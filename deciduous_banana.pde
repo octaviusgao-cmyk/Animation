@@ -2,10 +2,10 @@
 int x;
 int y;
 int t;
-int a;
-int b;
-int z;
-int l;
+int man1x;
+int Man2X;
+int man1dir;
+int Man2dir;
 
 void setup() {
   size(900, 900);
@@ -13,10 +13,10 @@ void setup() {
   x = 300;
   y = 200;
   t = 2;
-  a = 300;
-  b = 400;
-  z = 2;
-  l = 2;
+  man1x = 300;
+  Man2X = 400;
+  man1dir = 5;
+  Man2dir = -5;
 }
 
 
@@ -27,23 +27,24 @@ void draw() {
   x = x + t;
   if (x < 298 || x > 302) {
     t = -t;
-
-   a = a + z;
-   if (a < 302 || a < 298) {
-      z = -z;
-   }
-   b = b + l;
-   if (b > 402 || b < 398) {
-   l = -l;
-    
   }
-
   building (x - 200, y);
-  
 
-  snake(a, b);
+
+  man1x = man1x + man1dir;
+  if (man1x < 0 || man1x > 900) {
+    man1dir = -man1dir;
   }
+  Man2X = Man2X + Man2dir;
+  if (Man2X < 0 || Man2X > 900) {
+    Man2dir = -Man2dir;
+  }
+
+
+  snake(man1x, 800);
+  snake(Man2X, 800);
 }
+
 
 
 void building(int x, int y) {
@@ -58,22 +59,39 @@ void building(int x, int y) {
 }
 
 void snake(int a, int b) {
-  pushMatrix();
-  translate(a, b);
 
+  pushMatrix();
+
+
+
+
+  translate(a, b);
+  scale(0.5, 0.5);
   //snake's body
   fill(19, 113, 36);
   rect(-50, 0, 100, 200);
 
   //arms
-  fill(19, 113, 36);
+  fill(19, 0, 36);
   rect(-100, 0, 50, 100);
-  rect(50, b, 50, 100);
+  rect(50, 0, 50, 100);
 
+  //legs
+  fill(250, 0, 0);
+  rect(-50, 100, 50, 100);
+  rect(0, 100, 50, 100);
 
   //snake's head
   fill(222, 163, 123);
   ellipse(0, 0, 100, 100 );
+
+  //eyes
+  fill(0);
+  ellipse(-5, -5, 10, 10);
+  ellipse(10, -5, 10, 10);
+
+  //mouth
+  line(-25, 20, 10, 20);
 
 
 
