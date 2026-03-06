@@ -29,6 +29,14 @@ void draw() {
     t = -t;
   }
   building (x - 200, y);
+  window(x,0);
+  window(x,100);
+  window(x, 200);
+  window(x, 300);
+  window(x, 400);
+  window(x, 500);
+  
+  
 
 
   man1x = man1x + man1dir;
@@ -43,6 +51,7 @@ void draw() {
 
   snake(man1x, 800);
   snake(Man2X, 800);
+
 }
 
 
@@ -55,6 +64,18 @@ void building(int x, int y) {
   //building on the side
   fill(126, 86, 24);
   rect(x, 50, 200, 800);
+  
+  
+  popMatrix();
+}
+
+void window(int x, int y) {
+  pushMatrix();
+  fill(69, 198, 219);
+  rect(x-80, y+260, 40, 70);
+  rect(x-20, y+260, 40, 70);
+  rect(x+40, y+260, 40, 70);
+  
   popMatrix();
 }
 
