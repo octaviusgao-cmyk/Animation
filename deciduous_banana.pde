@@ -22,6 +22,7 @@ void setup() {
 
 void draw() {
   background(124, 116, 116);
+  explosion();
   building(x, y);
 
   x = x + t;
@@ -29,13 +30,18 @@ void draw() {
     t = -t;
   }
   building (x - 200, y);
-  window(x,0);
-  window(x,100);
+  window(x, 0);
+  window(x, 100);
   window(x, 200);
   window(x, 300);
   window(x, 400);
   window(x, 500);
-  
+  window(x+400, 0);
+  window(x+400, 100);
+  window(x+400, 200);
+  window(x+400, 300);
+  window(x+400, 400);
+  window(x+400, 500);
   
 
 
@@ -51,7 +57,6 @@ void draw() {
 
   snake(man1x, 800);
   snake(Man2X, 800);
-
 }
 
 
@@ -64,9 +69,26 @@ void building(int x, int y) {
   //building on the side
   fill(126, 86, 24);
   rect(x, 50, 200, 800);
-  
-  
+
+
   popMatrix();
+}
+
+void explosion() {
+  pushMatrix();
+  translate(450, 450);
+  
+  //explosion
+  fill(216, 15, 46);
+ 
+  noStroke();
+  ellipse(100, -400, 500, 200);
+  rect(0, -400, 200, 900);
+  fill(216, 140, 15);
+  rect(50, -350, 100, 800);
+  stroke(0);
+  
+  popMatrix(); 
 }
 
 void window(int x, int y) {
@@ -75,7 +97,7 @@ void window(int x, int y) {
   rect(x-80, y+260, 40, 70);
   rect(x-20, y+260, 40, 70);
   rect(x+40, y+260, 40, 70);
-  
+
   popMatrix();
 }
 
