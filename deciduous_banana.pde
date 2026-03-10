@@ -6,6 +6,8 @@ int man1x;
 int Man2X;
 int man1dir;
 int Man2dir;
+PFont HeyComic;
+
 
 void setup() {
   size(900, 900);
@@ -17,6 +19,8 @@ void setup() {
   Man2X = 400;
   man1dir = 5;
   Man2dir = -5;
+
+  HeyComic = createFont("Hey Comic.ttf", 200);
 }
 
 
@@ -42,7 +46,7 @@ void draw() {
   window(x+400, 300);
   window(x+400, 400);
   window(x+400, 500);
-  
+
 
 
   man1x = man1x + man1dir;
@@ -57,6 +61,8 @@ void draw() {
 
   snake(man1x, 800);
   snake(Man2X, 800);
+  
+  text();
 }
 
 
@@ -77,18 +83,18 @@ void building(int x, int y) {
 void explosion() {
   pushMatrix();
   translate(450, 450);
-  
+
   //explosion
   fill(216, 15, 46);
- 
+
   noStroke();
   ellipse(100, -400, 500, 200);
   rect(0, -400, 200, 900);
   fill(216, 140, 15);
   rect(50, -350, 100, 800);
   stroke(0);
-  
-  popMatrix(); 
+
+  popMatrix();
 }
 
 void window(int x, int y) {
@@ -139,4 +145,11 @@ void snake(int a, int b) {
 
 
   popMatrix();
+}
+
+void text() {
+  textFont(HeyComic);
+  stroke(2);
+  textSize(100);
+  text("RUN!", x-20, 200);
 }
