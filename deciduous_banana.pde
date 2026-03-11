@@ -7,6 +7,8 @@ int Man2X;
 int man1dir;
 int Man2dir;
 PFont HeyComic;
+int o;
+int count;
 
 
 void setup() {
@@ -14,11 +16,15 @@ void setup() {
   strokeWeight(5);
   x = 300;
   y = 200;
+  o = -450;
   t = 2;
   man1x = 300;
   Man2X = 400;
   man1dir = 5;
   Man2dir = -5;
+  
+  
+  
 
   HeyComic = createFont("Hey Comic.ttf", 200);
 }
@@ -26,13 +32,24 @@ void setup() {
 
 void draw() {
   background(124, 116, 116);
+  
+  
+  
+  dropping();
+  
+  if (o > 700) {
   explosion();
+ }
+  
   building(x, y);
 
   x = x + t;
   if (x < 298 || x > 302) {
     t = -t;
   }
+  
+  o = o + 5;
+  
   building (x - 200, y);
   window(x, 0);
   window(x, 100);
@@ -63,7 +80,10 @@ void draw() {
   snake(Man2X, 800);
   
   text();
+  count = count + 1;
+  
 }
+
 
 
 
@@ -79,7 +99,16 @@ void building(int x, int y) {
 
   popMatrix();
 }
-
+void dropping() {
+  pushMatrix();
+  translate(450, 450);
+  
+  //dropping the bomb
+  fill(216, 15, 46);
+  ellipse(100, o, 200, 200);
+  popMatrix();
+  
+}
 void explosion() {
   pushMatrix();
   translate(450, 450);
@@ -151,5 +180,5 @@ void text() {
   textFont(HeyComic);
   stroke(2);
   textSize(100);
-  text("RUN!", x-20, 200);
+  text("RUN!", x-200, 200);
 }
