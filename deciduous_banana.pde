@@ -1,3 +1,15 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+
+Minim minim;
+AudioPlayer song;
+AudioPlayer Rex;
+
 //snake blowing people up
 int x;
 int y;
@@ -23,6 +35,11 @@ void setup() {
   man1dir = 5;
   Man2dir = -5;
   
+  minim = new Minim(this);
+  song = minim.loadFile("exploding.mp3");
+  
+  minim = new Minim(this);
+  Rex = minim.loadFile("awesome.mp3");
   
   
 
@@ -33,12 +50,14 @@ void setup() {
 void draw() {
   background(124, 116, 116);
   
-  
+  Rex.play();
   
   dropping();
   
   if (o > 700) {
   explosion();
+  song.play();
+  
  }
   
   building(x, y);
